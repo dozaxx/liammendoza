@@ -1,0 +1,29 @@
+body{    
+    font-family: 'Roboto', sans-serif;
+    background-color: white;
+}
+
+.navbar-brand{
+    letter-spacing: 2px;
+    color: white;
+
+    
+}
+.navbar-light .navbar-brand {
+    color: white;
+}
+
+nav {
+    background-color: #222426;
+    color: white
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+    letter-spacing: 1px;
+}
+
+.jumbotron {
+    background-color: rgb(248, 248, 248);
+    border-bottom: 1px solid rgb(231, 231, 231);
+}
