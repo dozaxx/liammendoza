@@ -33,11 +33,11 @@ nav {
     
 }
 
-@media (min-width: 1200px) {
+/* @media (min-width: 1200px) {
     .container{
         max-width: 1400px;
     }
-}
+} */
 
 .blurb h2 {
    color: rgb(0, 0, 0);
@@ -130,5 +130,13 @@ li a:hover {
 .aboutintro {
     border-bottom: 1px solid rgb(231, 231, 231);
     padding-bottom: 50px;
+}
+
+.underConstruction {
+    margin: auto;
+    width: 50%;
+    padding-top: 100px;
+
+      
 }
 
