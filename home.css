@@ -27,6 +27,7 @@ hr {
     letter-spacing: 2px;
     z-index: 1;
     position: relative;
+
 }
 
 .landingName{
@@ -35,6 +36,7 @@ hr {
     font-weight: 200;
     z-index: 1;
     position: relative;
+    
     
 }
 
@@ -156,3 +158,9 @@ li a:hover {
   .no-cssanimations .slideshow li {
       opacity: 1;
   }
+
+  @media (min-width: 1200px) {
+    .container{
+        max-width: 1400px;
+    }
+}
