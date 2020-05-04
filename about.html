@@ -13,6 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
     <link rel="shortcut icon" href="https://hartdesign.co.nz/wp-content/uploads/2018/10/favicon.png" type="image/x-icon" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 </head>
 
 <body>
@@ -20,10 +22,7 @@
         <div class="container">
             <div class="d-flex flex-grow-1">
                 <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
-                <a class="navbar-brand d-none d-lg-inline-block" href="index.html">
-                    liam mendoza
-                </a>
-                <a class="navbar-brand-two mx-auto d-lg-none d-inline-block" href="#">
+                <a class="navbar-brand" href="index.html">
                     liam mendoza
                 </a>
                 <div class="w-100 text-right">
@@ -38,7 +37,7 @@
                     <li class="nav-item">
                         <a href="projects.html" class="nav-link m-2 menu-item">Projects</a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a href="about.html" class="nav-link m-2 menu-item">About</a>
                     </li>
                     <li class="nav-item">
@@ -55,7 +54,7 @@
     <div class="container">
         <section class="container-fluid px-0 ">
             <div class="row align-items-center mt-4 ">
-                <div class="col-md-6 ">
+                <div class="col-md-6 col-xs-12 ">
                     <div id="headingGroup" class="text-left d-none d-lg-block mt-5">
                         <h1 id="about1" class="mb-3">Hello, I'm Liam Mendoza.</h1>
                         <h3 class="">I am an Aspiring UI Designer &</h3>
@@ -66,9 +65,9 @@
                 <div class="col-md-6 aboutintro">
                     <div id="headingGroup" class="text-right d-none d-lg-block mt-5">
                         <ul id="landingNavbar">
-                            <li><a href="#">About Me</a></li>
-                            <li><a href="#">Skills</a></li>
-                            <li><a href="#">Experience</a></li>
+                            <li><a id="aboutbutton"href="#">About Me</a></li>
+                            <li><a id="skillbutton" href="#">Skills</a></li>
+                            <li><a id="experiencebutton" href="#">Experience</a></li>
                             <li><a href="resume.pdf">Resume</a></li>
                         </ul>
                     </div>
@@ -82,7 +81,7 @@
     <!-- </section>
 
     <section class="container-fluid px-0"> -->
-        <section class="container-fluid px-0 ">
+        <section class="container-fluid px-0 about">
             <div class="row align-items-center content mt-7">
                 <div class="col-md-6 order-2 order-md-1">
                     <img src="projectImages/scienceBuilding.jpg" alt="" class="img-fluid aboutimg">
@@ -138,7 +137,7 @@
 
     </div>
 
-    <section class="skills">
+    <section class="skills  shadow-lg p-10 mb-5 ">
         <div class="container">
             <div class="row skills">
                 
@@ -228,14 +227,17 @@
             </div>
         </div>
     </section>
+
     <footer class="footer">
         <div class="container">
             <p>Contact Me | email: liamsevillamendoza@gmail.com | mobile: +64 21 114 2589 |
-                <a href="https://github.com/dozaxx">GitHub</a> | LinkedIn: <a href="https://github.com/dozaxx">liamsevillamendoza</a>            </p>
+                <a class="socials" href="https://github.com/dozaxx">GitHub</a> | <a class="socials" href="https://github.com/dozaxx">LinkedIn</a>
+                </p>
             
         </div>
-      
     </footer>
+
     <script src="index.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 </body>
 </html>

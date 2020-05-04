@@ -1,29 +1,31 @@
-<!doctype html>
-
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8">
 
-    <title>Games | Liam Mendoza</title>
+    <title>About | Liam Mendoza</title>
     <meta name="description" content="The HTML5 Herald">
     <meta name="author" content="SitePoint">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
-    <link rel="shortcut icon" href="https://hartdesign.co.nz/wp-content/uploads/2018/10/favicon.png" type="image/x-icon" />
-</head>
+    <link rel="stylesheet" href="colorGame.css">
+    <link rel="stylesheet" href="../../index.css">
 
+    <link rel="shortcut icon" href="https://hartdesign.co.nz/wp-content/uploads/2018/10/favicon.png" type="image/x-icon" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    
+</head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
             <div class="d-flex flex-grow-1">
                 <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="../../index.html">
                     liam mendoza
                 </a>
-                <!-- <a class="navbar-brand-two mx-auto d-lg-none d-inline-block" href="#">
-                    liam mendoza
-                </a> -->
                 <div class="w-100 text-right">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
                         <span class="navbar-toggler-icon"></span>
@@ -34,37 +36,60 @@
                 <ul class="navbar-nav ml-auto flex-nowrap">
                     
                     <li class="nav-item">
-                        <a href="projects.html" class="nav-link m-2 menu-item">Projects</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a href="about.html" class="nav-link m-2 menu-item">About</a>
+                        <a href="../../projects.html" class="nav-link m-2 menu-item">Projects</a>
                     </li>
                     <li class="nav-item">
-                        <a href="contact.html" class="nav-link m-2 menu-item">Contact</a>
+                        <a href="../../about.html" class="nav-link m-2 menu-item">About</a>
                     </li>
                     <li class="nav-item">
-                        <a href="games.html" class="nav-link m-2 menu-item nav-active">Games</a>
+                        <a href="../../contact.html" class="nav-link m-2 menu-item">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../games.html" class="nav-link m-2 menu-item nav-active">Games</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <h1>a colour game
+        <br>
+        <span id="colorDisplay">RGB</span>
+        <br>
+        take a guess</h1>
 
-    </div>
+        <div id="stripe">
 
-    <div class="underConstruction">
-        <h1>Click <a href="games/ColorGame/colorGame.html">here</a> to play a game.</h1>
-    </div>
+            <button id="reset">New Colors</button>
+            <span id = "message"></span>
+            <button id = "easyBtn" class="mode">Easy</button>
+            <button id = "hardBtn" class="mode selected">Hard</button>
 
-    <!-- <footer class="footer">
+        </div>
+
+        <div class="row">
+            <div class=col-lg-12>
+                <div id="container" class="container">
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                </div>
+            </div>
+        </div>
+    
+
+    <footer class="footer">
         <div class="container">
             <p>Contact Me | email: liamsevillamendoza@gmail.com | mobile: +64 21 114 2589 |
-                <a href="https://github.com/dozaxx">GitHub</a> | LinkedIn: <a href="https://github.com/dozaxx">liamsevillamendoza</a>            </p>
+                <a class="socials" href="https://github.com/dozaxx">GitHub</a> | <a  class="socials" href="https://github.com/dozaxx">LinkedIn</a>
+                         </p>
             
         </div>
-      
-    </footer> -->
-    <script src="index.js"></script>
+    </footer>
+
+    <script type="text/javascript" src="colorGame.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 </body>
