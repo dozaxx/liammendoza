@@ -1,0 +1,369 @@
+<!--
+		Arlo Web Control Demo - Event Template - Starter Template
+		-->
+
+<div class="arlo">
+  <div id="event-template" class="bg-master-lightest"></div>
+</div>
+
+<script type="text/template" id="filter-template">
+  <div class="arlo-filters-container arlo-filters">
+
+      <div class="arlo-event-filters clearfix arlo-font-primary" id="filters">
+          <%= showFilter({filterCode: "locname", callbacks: {onRender: onEventFilterLoad}}) %>
+
+          <%= showFilter({filterCode: "onlineorvenue", displayStyle: "ul", onlineOrVenueText: {online: "Live online", venue: "At a venue"} }) %>
+
+          <%= showClearFiltersButton({clearButtonMessage: "Reset"}) %>
+
+          <%= showTimezoneSelector() %>
+      </div>
+
+      <div id="arlo-filter-toggle" class="arlo-filter-toggle">
+          <div class="arlo-filter-toggle-show">
+              Show filters <i class="fa fa-chevron-down"></i>
+          </div>
+          <div class="arlo-filter-toggle-hide">
+              Hide filters <i class="fa fa-chevron-up"></i>
+          </div>
+      </div>
+
+  </div>
+</script>
+
+<script type="text/template" id="event-template-template">
+  <div class="bg-primary p-t-30 p-b-30 m-b-30 xs-p-t-15 xs-p-b-15">
+      <div class="container">
+          <h1 class="text-white"><%= Name %></h1>
+          <p class="text-white"><%= Summary %></p>
+
+          <div class="arlo-advertised-info m-b-10">
+              <span class="arlo-advertised-duration muted m-r-15"><i class="icons8-clock m-r-5"></i> <%= AdvertisedDuration %></span>
+              <span class="arlo-advertised-offer muted m-r-15"><i class="icons8-price-tag m-r-5"></i> <%= formatAdvertisedOffers({showSingleOffer: true}) %></span>
+              <span class="arlo-advertised-presenters muted m-r-15"><i class="icons8-user m-r-5"></i> <%= formatCollection(AdvertisedPresenters, "csv", false) %></span>
+          </div>
+      </div>
+  </div>
+
+  <div class="container">
+      <div class="clearfix row arlo-template-events-list p-b-10">
+          <%= showEventTemplateFilters({
+              template: "#filter-template",
+              loadImmediately: true,
+              filterControlId: 1
+          }) %>
+
+          <%= showEventTemplateEventsList({
+              template: "#template-event-template",
+              loadImmediately: true,
+              includeLoadMoreButton: true,
+              loadMoreButtonText: "Load More",
+              maxCount: 4,
+              filterControlId: 1,
+              queryStringConfig: ["event"],
+              customUrls:{
+                  eventtemplate: "/event-template.html",
+                  venue: "/venue.html",
+                  presenter: "/presenter.html"
+              },
+              callbacks: {
+                  onShow: eventTemplateOnShow
+              }
+          }) %>
+      </div>
+
+      <% if (RegisterPrivateInterestUri && RegisterPrivateInterestUri !== "" && RegisterInterestUri && RegisterInterestUri !== "") { %>
+          <div class="row bg-white p-t-20 p-b-20 p-r-40 p-l-40 m-b-20 leads-section xs-p-r-5 xs-p-l-5 xs-p-t-15 xs-p-b-15">
+            <div class="col-xs-12 text-center col-md-6 md-m-b-20">
+              <i class="icons8-forward hidden visible-xs pull-left text-secondary"></i> <a class="visible-xs hidden block m-l-25" href="<%- RegisterPrivateInterestUri %>">Enquire about in-house option</a><span class="hidden-xs">Want to run this course in-house? <a href="<%- RegisterPrivateInterestUri %>">Enquire about running this course in-house</a></span>
+            </div>
+            <div class="col-xs-12 text-center col-md-6">
+              <i class="icons8-forward visible-xs hidden pull-left text-secondary"></i> <a class="visible-xs hidden block m-l-25" href="<%- RegisterInterestUri %>">Suggest another date &amp; time</a><span class="hidden-xs">None of these dates work for you? <a href="<%- RegisterInterestUri %>">Suggest another date &amp; time</a></span>
+            </div>
+          </div>
+      <% } else if (RegisterPrivateInterestUri && RegisterPrivateInterestUri !== "") { %>
+          <div class="row bg-white p-t-20 p-b-20 p-r-40 p-l-40 m-b-20 leads-section xs-p-r-5 xs-p-l-5 xs-p-t-15 xs-p-b-15">
+            <div class="col-xs-12 text-center">
+              <i class="icons8-forward hidden visible-xs pull-left text-secondary"></i> <a class="visible-xs hidden block m-l-25" href="<%- RegisterPrivateInterestUri %>">Enquire about in-house option</a><span class="hidden-xs">Want to run this course in-house? <a href="<%- RegisterPrivateInterestUri %>">Enquire about running this course in-house</a></span>
+            </div>
+          </div>
+      <% } else if (RegisterInterestUri && RegisterInterestUri !== "") { %>
+          <div class="row bg-white p-t-20 p-b-20 p-r-40 p-l-40 m-b-20 leads-section xs-p-r-5 xs-p-l-5 xs-p-t-15 xs-p-b-15">
+            <div class="col-xs-12 text-center">
+              <i class="icons8-forward visible-xs hidden pull-left text-secondary"></i> <a class="visible-xs hidden block m-l-25" href="<%- RegisterInterestUri %>">Suggest another date &amp; time</a><span class="hidden-xs">None of these dates work for you? <a href="<%- RegisterInterestUri %>">Suggest another date &amp; time</a></span>
+            </div>
+          </div>
+      <% } %>
+
+      <div class="clearfix row p-b-20">
+          <%= showEventTemplateOnlineActivitiesList({
+              template: "#online-activities-template",
+              loadImmediately: true,
+              maxCount: 1,
+              callbacks: {
+                  onShow: oaOnShow
+              }
+          }) %>
+      </div>
+
+      <div class="bg-white padding-30">
+          <%= ContentFields %>
+      </div>
+
+  </div>
+</script>
+
+<script type="text/template" id="online-activities-template">
+  <div class="drop-shadow bg-white padding-20 sm-p-b-20 no-overflow full-width online-activity relative xs-p-l-0 xs-p-r-0 xs-p-t-0 xs-p-b-0 m-b-10">
+      <div class="relative">
+            <div class="hidden visible-xs relative">
+              <div class="date bg-primary text-white pull-left p-t-15">
+                <i class="icons8-start"></i>
+              </div>
+              <div class="event-content md-p-l-70 md-p-b-10 md-p-t-10 md-p-r-0 xl-p-r-20 xl-p-l-20 lg-p-r-20 lg-p-l-20">
+                  <h5 class="text-primary"><%- ReferenceTerms.Singular %></h5>
+              </div>
+          </div>
+
+          <div class="hidden-xs">
+              <div class="col-xs-12 col-md-3 md-p-l-0 md-p-r-0">
+                  <h3 class="no-margin"><%- ReferenceTerms.Singular %></h3>
+              </div>
+              <div class="col-xs-8 col-md-6 b-l b-grey md-p-l-0">
+                <p><%- DeliveryDescription %></p>
+                <p><%= formatAdvertisedOffers({ showPriceWithTaxInclusive: false }) %></p>
+              </div>
+              <div class="col-xs-4 col-md-3 text-right md-p-l-0 p-r-0">
+                <%= formatRegistrationInfo('link') %>
+              </div>
+          </div>
+
+          <a class="btn-expand mobile">
+              <i class="fa fa-angle-down" aria-hidden="true"></i>
+          </a>
+      </div>
+
+      <div class="mobile-expanded-visible">
+        <div class="sm-padding-15">
+        <p class="normal-text m-b-0"><%- DeliveryDescription %></p>
+        <p class="normal-text"><%= formatAdvertisedOffers({ showPriceWithTaxInclusive: false }) %></p>
+        <%= formatRegistrationInfo('link') %>
+        </div>
+      </div>
+
+  </div>
+</script>
+
+<script type="text/template" id="template-event-template">
+  <% var sameDateEvent = formatDate(StartDateTime, "D MM") !== formatDate(EndDateTime, "D MM") %>
+
+  <div class="event m-b-10">
+
+    <div class="drop-shadow bg-white padding-20 no-overflow full-width event-container" tabindex="-1">
+
+      <div class="hidden visible-xs relative">
+        <div class="date bg-primary text-white pull-left">
+          <div class="day"><%= formatDate(StartDateTime, "D") %></div>
+          <div class="month"><%= formatDate(StartDateTime, "MMM") %></div>
+        </div>
+        <div class="event-content md-p-l-70 md-p-b-10 md-p-t-10 md-p-r-10 xl-p-r-20 xl-p-l-20 lg-p-r-20 lg-p-l-20">
+            <h5 class="text-primary no-margin">
+                   <% if (Location.ViewUri) { %><a href="<%= Location.ViewUri %>"><% } %>
+                       <i class="icons8-marker"></i>  <%= Location.Name %>
+                   <% if (Location.ViewUri) { %></a><% } %>
+            </h5>
+          <h5 class="no-margin"><%= Duration %>, <%= formatDate(StartDateTime, "HH:mm A") %> <%- TimeZone %> - <%= formatDate(EndDateTime, "HH:mm A") %> <%- TimeZone %></h5>
+        </div>
+        <a class="btn-expand mobile">
+          <i class="fa fa-angle-down" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <div class="mobile-expanded-visible">
+        <div class="visible-overflow xs-padding-20">
+
+            <% if (EventFullMessage !== "") { %>
+            <div class="arlo-event-label arlo-full text-white bg-danger"><%= EventFullMessage %></div>
+            <% } %>
+
+            <% var hasDiscountOffer = false;
+
+            for (var i=0; i < AdvertisedOffers.length; i++) {
+                    if (AdvertisedOffers[i].IsDiscountOffer) {
+                        hasDiscountOffer = true
+                    }
+                }
+            %>
+
+            <% if (hasDiscountOffer) { %>
+                <div class="arlo-event-label arlo-full text-white bg-success">Discount</div>
+            <% } %>
+
+          <div class="col-2-events">
+            <div class="col-1-events">
+              <h3 class='m-t-0 m-l-0 m-r-0 lh-1 m-b-10 hidden-xs'><%= formatDate(StartDateTime, "ddd D MMM") %></h3>
+              <div class="m-b-10">
+                <p class="expanded-visible no-margin normal-text visible-1-event hidden-xs"><%= formatDate(StartDateTime, "D MMMM YYYY") %><% if (sameDateEvent) { %> - <%= formatDate(EndDateTime, "D MMMM YYYY") %><% } %></p>
+                <p class="expanded-visible no-margin normal-text visible-1-event hidden visible-xs"><%= formatDate(StartDateTime, "D MMMM YYYY") %><% if (sameDateEvent) { %> - <%= formatDate(EndDateTime, "D MMMM YYYY") %><% } %></p>
+                <p class="truncate-1 no-margin time normal-text visible-1-event visible-2-events"><%= Duration %>, <%= formatDate(StartDateTime, "HH:mm A") %> <%- TimeZone %> - <%= formatDate(EndDateTime, "HH:mm A") %> <%- TimeZone %></p>
+              </div>
+            </div>
+
+            <div class="col-1-events last-col">
+              <div class="m-b-10">
+                <p class="location truncate-1 normal-text visible-1-event visible-2-events m-b-0"><i class="icons8-marker pull-left"></i> <span class="block m-l-25">
+                       <% if (Location.ViewUri) { %><a href="<%= Location.ViewUri %>"><% } %>
+                           <%= Location.Name %>
+                       <% if (Location.ViewUri) { %></a><% } %>
+                    </span></p>
+
+                   <div class="expanded-visible location-full">
+                           <% if (Location.ViewUri) { %><a href="<%= Location.ViewUri %>"><% } %>
+                               <%= Location.VenueName %>
+                           <% if (Location.ViewUri) { %></a><% } %>
+
+                           <div class="muted">
+                               <div>
+                              <%= Location.StreetLine1 %>
+                            </div>
+                            <div>
+                              <%= Location.StreetLine2 %>
+                            </div>
+                            <div>
+                              <%= Location.StreetLine3 %>
+                            </div>
+                            <div>
+                              <%= Location.StreetLine4 %>
+                            </div>
+                            <div>
+                              <%= Location.Suburb %><% if (Location.Suburb && (Location.City || Location.State || Location.PostCode)) { %>,
+                                  <% } %><%= Location.City %> <%= Location.State %> <%= Location.PostCode %></div>
+                            <div>
+                              <%= Location.Country %>
+                            </div>
+                           </div>
+                    </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-2-events col-1-events last-col xs-p-b-0 p-b-70">
+            <% if (Credits) { %>
+                  <div class="truncate-1 normal-text expanded-visible visible-1-event visible-2-events m-b-0 pd-points"><i class="icons8-prize pull-left"></i> <span class="block m-l-25"><%= Credits %></span></div>
+            <% } %>
+
+            <% if (Provider.Name && Provider.Name !== "") { %>
+                <% var hasProviderLink = typeof(Provider.WebsiteUri) !== "undefined" && Provider.WebsiteUri !== "" %>
+                <div class="expanded-visible provider">
+                  <i class="icons8-building pull-left"></i> <span class="block m-l-25">Provided by <% if (hasProviderLink) { %><a href="<%- Provider.WebsiteUri %>"><% } %><%- Provider.Name %><% if (hasProviderLink) { %></a><% } %></span>
+                </div>
+            <% } %>
+
+            <% if (Notice && Notice !== "") { %>
+                <div class="expanded-visible notice">
+                    <i class="icons8-about pull-left"></i> <span class="block m-l-25"><%= Notice %></span>
+                </div>
+            <% } %>
+
+            <% if (Sessions.length > 1) { %>
+                <div class="m-b-10"><a class="session-popup-trigger"><i class="icons8-clock pull-left m-r-5"></i> Session information</a></div>
+
+                <div class="session-popup-content">
+
+                    <div class="session-header"><h2>Sessions</h2></div>
+
+                   <%= formatSessionsInformation({template: "#event-session-popup-template"}) %>
+
+                </div>
+
+            <% } %>
+
+
+            <% if (Presenters.length > 0) { %>
+                <div class="presenters truncate-1 visible-1-event visible-2-events m-b-10">
+                  <i class="icons8-user pull-left"></i> <span class="block m-l-25">Presented by <%= formatCollection(Presenters, "csv", true) %></span>
+                </div>
+            <% } %>
+
+            <div class="price expanded-hidden hidden-xs"><%= formatAdvertisedOffers({showSingleOffer: true, showLabel: false}) %></div>
+
+            <div class="price expanded-visible">
+              <%= formatAdvertisedOffers() %>
+            </div>
+
+            <div class="buttons xs-m-t-10">
+            <% if (EventFullMessage !== "") { %>
+            <div class="text-danger m-b-5"><%= EventFullMessage %></div>
+            <% } %>
+            <%= formatRegistrationInfo('link') %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a class="btn-expand desktop">
+        <i class="fa fa-angle-down" aria-hidden="true"></i>
+      </a>
+
+    </div>
+  </div>
+</script>
+
+<script type="text/template" id="event-session-popup-template">
+  <div class="row m-b-10 b-b b-grey p-b-10 session">
+      <div class="session-name block">
+          <strong class="m-b-5"><%= Name %></strong>
+          <% if (IsFull) { %>
+              <span class="arlo-session-label arlo-full text-white bg-danger">Event Full</span>
+          <% }%>
+      </div>
+
+      <div class="session-time">
+          <div class="session-timespan m-b-5">
+              <% if (formatDate(StartDateTime, "D MMM YYYY") == formatDate(EndDateTime, "D MMM YYYY") ) { %>
+                  <span><%= Day %>, <%= Date %>, </span>
+
+                  <span><%= formatDate(StartDateTime, "hh:mm a") %> - <%= formatDate(EndDateTime, "hh:mm a") %></span>
+              <% } else { %>
+                  <span><%= formatDate(StartDateTime, "ddd D MMM YYYY, hh:mm a") %></span><span> - </span><span><%= formatDate(EndDateTime, "ddd D MMM YYYY, hh:mm a") %></span>
+              <% } %>
+          </div>
+
+          <div class="location block m-b-5"><a href="#"><i class="icons8-marker pull-left"></i> <span class="block m-l-20"><%= Location.Name %></span></a></div>
+      </div>
+
+      <div class="session-offers">
+          <div class="m-b-5 xs-p-t-15"><%= formatAdvertisedOffers({showSingleOffer: true}) %></div>
+      </div>
+
+      <div class="session-presenters">
+          <div class="m-b-5 xs-p-t-15"><% if (typeof Presenters != 'undefined') { %><%= formatCollection(Presenters, "ul", true) %><% } %></div>
+      </div>
+
+
+  </div>
+</script>
+
+<script
+  src="//code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"
+></script>
+<script
+  type="text/javascript"
+  src="//packages.arlocdn.net/jscontrols/1.0/resources/resizesensor.js"
+  charset="utf-8"
+></script>
+<script
+  type="text/javascript"
+  src="//packages.arlocdn.net/jscontrols/1.0/resources/elementqueries.js"
+  charset="utf-8"
+></script>
+<script
+  type="text/javascript"
+  src="//connect.arlocdn.net/jscontrols/1.0/init.js"
+  charset="utf-8"
+  defer="defer"
+></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tingle/0.12.0/tingle.min.js"></script>

@@ -1,0 +1,26 @@
+body{
+    font-family: sans-serif;
+}
+
+#shape{
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    display: none;
+    position: relative;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+h1 {
+    color: white;
+    font-weight: normal;
+    text-align: center;
+    background:  rgb(37, 37, 37);
+    margin-bottom:0px;
+    /* text-transform: uppercase; */
+    line-height: 1.1;
+    padding: 50px 0px;
+}

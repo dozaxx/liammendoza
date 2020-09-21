@@ -1,0 +1,14 @@
+h1 {
+    
+    font-weight:normal;
+    text-align: center;
+
+}
+
+.square {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    margin: 0 auto;
+    border: solid 2px black;
+}
